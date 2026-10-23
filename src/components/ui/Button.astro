@@ -1,0 +1,99 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'gold' | 'outline-dark' | 'outline-light' | 'text';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  target?: string;
+  rel?: string;
+  hasArrow?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  id?: string;
+  'aria-label'?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  target,
+  rel,
+  hasArrow = false,
+  type = 'button',
+  id,
+  'aria-label': ariaLabel,
+} = Astro.props;
+
+const baseStyles =
+  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-300 rounded-sm cursor-pointer select-none group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
+const variantStyles = {
+  primary:
+    'bg-[#173D2B] text-[#F5F2E9] hover:bg-[#102B20] hover:shadow-md border border-[#173D2B] focus-visible:ring-[#B89B65]',
+  gold:
+    'bg-[#B89B65] text-[#102B20] font-semibold hover:bg-[#CDB78C] hover:shadow-md border border-[#B89B65] focus-visible:ring-[#173D2B]',
+  'outline-dark':
+    'bg-transparent text-[#173D2B] border border-[#173D2B]/30 hover:border-[#173D2B] hover:bg-[#173D2B]/5 focus-visible:ring-[#173D2B]',
+  'outline-light':
+    'bg-transparent text-[#F5F2E9] border border-[#F5F2E9]/40 hover:border-[#F5F2E9] hover:bg-white/10 focus-visible:ring-[#B89B65]',
+  text:
+    'bg-transparent text-[#173D2B] hover:text-[#B89B65] p-0 border-none underline-offset-4 hover:underline focus-visible:ring-[#B89B65]',
+};
+
+const sizeStyles = {
+  sm: 'text-xs px-3.5 py-1.5 gap-1.5',
+  md: 'text-sm px-5 py-2.5 gap-2',
+  lg: 'text-base px-7 py-3.5 gap-2.5',
+};
+
+const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${variant !== 'text' ? sizeStyles[size] : 'gap-1.5 py-1'} ${className}`;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={combinedClasses}
+      target={target}
+      rel={target === '_blank' ? (rel || 'noopener noreferrer') : rel}
+      id={id}
+      aria-label={ariaLabel}
+    >
+      <slot />
+      {hasArrow && (
+        <svg
+          class="w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      )}
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={combinedClasses}
+      id={id}
+      aria-label={ariaLabel}
+    >
+      <slot />
+      {hasArrow && (
+        <svg
+          class="w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      )}
+    </button>
+  )
+}

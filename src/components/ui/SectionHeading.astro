@@ -1,0 +1,102 @@
+---
+interface Props {
+  label?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center' | 'split';
+  theme?: 'light' | 'dark';
+  class?: string;
+}
+
+const {
+  label,
+  title,
+  description,
+  align = 'left',
+  theme = 'light',
+  class: className = '',
+} = Astro.props;
+
+const isDark = theme === 'dark';
+---
+
+{
+  align === 'split' ? (
+    <div class={`grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-16 ${className}`}>
+      <div class="lg:col-span-7">
+        {label && (
+          <div class="flex items-center gap-3 mb-3">
+            <span class={`h-px w-6 ${isDark ? 'bg-[#B89B65]' : 'bg-[#173D2B]/40'}`} aria-hidden="true" />
+            <span
+              class={`text-xs font-semibold uppercase tracking-[0.2em] ${
+                isDark ? 'text-[#B89B65]' : 'text-[#173D2B]/75'
+              }`}
+            >
+              {label}
+            </span>
+          </div>
+        )}
+        <h2
+          class={`font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.15] ${
+            isDark ? 'text-[#F5F2E9]' : 'text-[#102B20]'
+          }`}
+        >
+          {title}
+        </h2>
+      </div>
+      {description && (
+        <div class="lg:col-span-5">
+          <p
+            class={`text-base sm:text-lg leading-relaxed ${
+              isDark ? 'text-[#F5F2E9]/75' : 'text-[#202923]/75'
+            }`}
+          >
+            {description}
+          </p>
+        </div>
+      )}
+    </div>
+  ) : (
+    <div
+      class={`mb-12 lg:mb-16 ${
+        align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-3xl'
+      } ${className}`}
+    >
+      {label && (
+        <div
+          class={`flex items-center gap-3 mb-3 ${
+            align === 'center' ? 'justify-center' : ''
+          }`}
+        >
+          <span class={`h-px w-6 ${isDark ? 'bg-[#B89B65]' : 'bg-[#173D2B]/40'}`} aria-hidden="true" />
+          <span
+            class={`text-xs font-semibold uppercase tracking-[0.2em] ${
+              isDark ? 'text-[#B89B65]' : 'text-[#173D2B]/75'
+            }`}
+          >
+            {label}
+          </span>
+          {align === 'center' && (
+            <span class={`h-px w-6 ${isDark ? 'bg-[#B89B65]' : 'bg-[#173D2B]/40'}`} aria-hidden="true" />
+          )}
+        </div>
+      )}
+      <h2
+        class={`font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.15] ${
+          isDark ? 'text-[#F5F2E9]' : 'text-[#102B20]'
+        }`}
+      >
+        {title}
+      </h2>
+      {description && (
+        <p
+          class={`mt-4 text-base sm:text-lg leading-relaxed ${
+            isDark ? 'text-[#F5F2E9]/75' : 'text-[#202923]/75'
+          }`}
+        >
+          {description}
+        </p>
+      )}
+    </div>
+  )
+}

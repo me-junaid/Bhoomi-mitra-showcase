@@ -1,0 +1,79 @@
+---
+import { FOOTER_DATA, SINGLE_PAGE_NAV } from '../../data/navigation';
+import BrandLogo from '../ui/BrandLogo.astro';
+import Container from '../ui/Container.astro';
+---
+
+<footer class="bg-[#102B20] text-[#F5F2E9] pt-20 pb-12 border-t border-[#B89B65]/30">
+  <Container>
+    <!-- Top Footer Banner: Brand Message -->
+    <div class="pb-12 mb-12 border-b border-white/10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+      <div>
+        <span class="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#B89B65] block mb-2">
+          BHOOMI MITRA INVESTOR SHOWCASE
+        </span>
+        <h3 class="font-serif text-2xl sm:text-3xl text-[#F5F2E9]">
+          Discover Farmland. Manage Your Land. Grow with Expertise.
+        </h3>
+      </div>
+
+      <!-- Back to Top Button -->
+      <a
+        href="#hero"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xs bg-white/5 border border-white/15 text-xs text-[#F5F2E9] hover:bg-white/10 hover:text-[#B89B65] hover:border-[#B89B65]/50 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B89B65]"
+        aria-label="Back to top of presentation"
+      >
+        <span>Back to Top</span>
+        <svg class="w-4 h-4 text-[#B89B65]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Main Footer Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
+      <!-- Brand & Mission Column -->
+      <div class="lg:col-span-7 flex flex-col gap-5">
+        <BrandLogo theme="light" size="md" showTagline={true} />
+
+        <p class="text-xs sm:text-sm text-[#F5F2E9]/75 leading-relaxed max-w-lg">
+          {FOOTER_DATA.description}
+        </p>
+
+        <!-- Compliance & Pre-Launch Disclaimer Notice -->
+      </div>
+
+      <!-- Links: Presentation Sections -->
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#B89B65]">
+          Presentation Flow
+        </h4>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5" role="list">
+          {
+            SINGLE_PAGE_NAV.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-xs sm:text-sm text-[#F5F2E9]/75 hover:text-[#B89B65] transition-colors duration-200"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#F5F2E9]/60">
+      <div>
+        &copy; {FOOTER_DATA.copyrightYear} Bhoomi Mitra. All rights reserved.
+      </div>
+      <div class="flex items-center gap-2 text-[11px] font-mono text-[#B89B65]">
+        <span class="w-2 h-2 rounded-full bg-[#6E8061] animate-pulse"></span>
+        <span>Corporate Concept Showcase — Confidential Investor Preview</span>
+      </div>
+    </div>
+  </Container>
+</footer>

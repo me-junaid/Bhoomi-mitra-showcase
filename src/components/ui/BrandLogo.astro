@@ -1,0 +1,54 @@
+---
+interface Props {
+  theme?: 'dark' | 'light';
+  size?: 'sm' | 'md' | 'lg';
+  showTagline?: boolean;
+  class?: string;
+}
+
+const {
+  theme = 'light',
+  size = 'md',
+  showTagline = false,
+  class: className = '',
+} = Astro.props;
+
+const isLight = theme === 'light'; // Light for dark backgrounds (Header, Footer)
+
+const heightClasses = {
+  sm: 'h-8 sm:h-9',
+  md: 'h-10 sm:h-12',
+  lg: 'h-14 sm:h-16',
+};
+---
+
+<a
+  href="/"
+  class={`inline-flex items-center gap-3.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B89B65] rounded-sm py-1 ${className}`}
+  aria-label="Bhoomi Mitra — Home"
+>
+  <!-- Official Bhoomi Mitra Logo Mark -->
+  <div class="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+    <img
+      src="/BHOOMI_MITRA_LOGO_ONLY_BLACK_TRANSPARENT.png"
+      alt="Bhoomi Mitra Logo"
+      class={`${heightClasses[size]} w-auto object-contain ${
+        isLight ? 'brightness-0 invert' : ''
+      }`}
+      loading="eager"
+    />
+  </div>
+
+  {
+    showTagline && (
+      <div class="hidden sm:flex flex-col border-l border-white/20 pl-3.5 ml-1">
+        <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-[#B89B65]">
+          Ecosystem
+        </span>
+        <span class="text-[9px] tracking-wider text-[#F5F2E9]/75 uppercase">
+          Farmland &amp; Agri
+        </span>
+      </div>
+    )
+  }
+</a>

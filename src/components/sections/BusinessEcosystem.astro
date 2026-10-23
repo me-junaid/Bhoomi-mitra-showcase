@@ -1,0 +1,92 @@
+---
+import { ECOSYSTEM_PILLARS } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="ecosystem" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label="THE BHOOMI MITRA ECOSYSTEM"
+        title="Three Pillars. One Connected Platform."
+        description="The entire Bhoomi Mitra business concept is anchored upon three foundational pillars operating as one synergistic ecosystem."
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Visual Ecosystem Architecture Diagram (Interactive Semantic CSS / SVG) -->
+    <Reveal delay={120}>
+      <div class="my-8 p-8 sm:p-12 lg:p-16 rounded-sm bg-[#102B20] text-[#F5F2E9] shadow-2xl relative overflow-hidden border border-[#B89B65]/40">
+        <!-- Background radial grid -->
+        <div class="absolute inset-0 bg-[radial-gradient(#B89B65_1px,transparent_1px)] [background-size:28px_28px] opacity-15 pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+          <!-- Central Platform Hub Node -->
+          <div class="max-w-md mx-auto mb-12 sm:mb-16 text-center">
+            <div class="p-6 sm:p-7 rounded-sm bg-gradient-to-b from-[#173D2B] to-[#102B20] border-2 border-[#B89B65] shadow-xl relative group">
+              <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#B89B65] block mb-1">
+                Central Orchestration Layer
+              </span>
+              <h3 class="font-serif text-3xl sm:text-4xl text-[#F5F2E9] mb-1">
+                BHOOMI MITRA
+              </h3>
+              <p class="text-xs text-[#F5F2E9]/75 font-light">
+                Integrated Digital &amp; Operational Platform
+              </p>
+            </div>
+            <!-- Connecting downward pointer -->
+            <div class="w-px h-8 bg-gradient-to-b from-[#B89B65] to-transparent mx-auto hidden sm:block"></div>
+          </div>
+
+          <!-- 3 Connected Pillars Nodes Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {
+              ECOSYSTEM_PILLARS.map((pillar, idx) => (
+                <div class="p-6 sm:p-7 rounded-sm bg-white/5 border border-white/10 hover:border-[#B89B65]/70 hover:bg-white/[0.08] transition-all duration-300 flex flex-col justify-between group">
+                  <div>
+                    <div class="flex items-center justify-between mb-4">
+                      <span class="font-mono text-xs font-bold text-[#B89B65]">
+                        PILLAR 0{idx + 1}
+                      </span>
+                      <span class="w-2 h-2 rounded-full bg-[#B89B65] opacity-75 group-hover:scale-125 transition-transform" />
+                    </div>
+
+                    <h4 class="font-serif text-2xl text-[#F5F2E9] mb-3 group-hover:text-[#CDB78C] transition-colors">
+                      {pillar.title}
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-[#F5F2E9]/75 leading-relaxed mb-6 font-light">
+                      {pillar.summary}
+                    </p>
+
+                    <ul class="space-y-2 mb-6 pt-4 border-t border-white/10 text-xs text-[#F5F2E9]/70" role="list">
+                      {pillar.bulletPoints.map((point) => (
+                        <li class="flex items-start gap-2">
+                          <span class="text-[#B89B65] font-bold">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <a
+                    href={pillar.ctaHref}
+                    class="pt-4 border-t border-white/10 text-xs font-semibold uppercase tracking-wider text-[#B89B65] group-hover:text-white transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <span>{pillar.ctaLabel}</span>
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </Container>
+</section>

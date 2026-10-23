@@ -1,0 +1,134 @@
+---
+import { MARKETPLACE_DEMO_DATA } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="marketplace" class="py-24 sm:py-32 bg-[#FAF8F3] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <div id="solutions" class="scroll-mt-24"></div>
+    <Reveal>
+      <SectionHeading
+        label={MARKETPLACE_DEMO_DATA.eyebrow}
+        title={MARKETPLACE_DEMO_DATA.heading}
+        description="Transforming the opaque, unorganized agricultural land search into a structured discovery experience backed by GPS boundary maps, soil health data, and independent legal coordination."
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Platform Preview Callout Box -->
+    <Reveal delay={100}>
+      <div class="mb-10 p-4 sm:p-5 rounded-xs bg-[#173D2B]/10 border border-[#173D2B]/25 text-xs text-[#173D2B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#B89B65] animate-pulse"></span>
+          <span class="font-mono font-bold uppercase tracking-wider text-[11px]">
+            Conceptual Platform Preview
+          </span>
+        </div>
+        <p class="text-[11px] leading-relaxed text-[#202923]/75 max-w-2xl sm:text-right">
+          {MARKETPLACE_DEMO_DATA.disclaimer}
+        </p>
+      </div>
+
+      <!-- Conceptual Search & Filter Bar Demonstration -->
+      <div class="bg-white border border-[#202923]/15 rounded-sm p-4 sm:p-6 mb-12 shadow-sm">
+        <div class="text-xs font-mono font-semibold uppercase tracking-wider text-[#6E8061] mb-3">
+          Proposed Parametric Farmland Search Filters
+        </div>
+        <div class="flex flex-wrap gap-2.5">
+          {
+            MARKETPLACE_DEMO_DATA.filterPills.map((pill, idx) => (
+              <span
+                class={`px-3.5 py-1.5 rounded-full text-xs font-medium cursor-default transition-colors ${
+                  idx === 0
+                    ? 'bg-[#102B20] text-[#F5F2E9]'
+                    : 'bg-[#F5F2E9] text-[#202923] border border-[#202923]/10'
+                }`}
+              >
+                {pill}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </Reveal>
+
+    <!-- 3 Demonstration Property Mockup Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        MARKETPLACE_DEMO_DATA.mockListings.map((listing, idx) => (
+          <Reveal delay={idx * 140} class="h-full">
+            <article class="h-full bg-white border border-[#202923]/15 rounded-sm overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#173D2B] transition-all hover:shadow-lg group">
+              <div>
+                <!-- Mock Card Image Header -->
+                <div class="relative aspect-[16/10] overflow-hidden bg-[#102B20]">
+                  <img
+                    src={listing.image}
+                    alt={listing.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#102B20]/80 via-transparent to-transparent"></div>
+
+                  <!-- Status Badge -->
+                  <div class="absolute top-3 right-3 px-2.5 py-1 rounded-xs bg-[#102B20]/90 backdrop-blur-sm border border-[#B89B65]/40 text-[#B89B65] font-mono text-[10px] uppercase tracking-wider">
+                    {listing.status}
+                  </div>
+
+                  <!-- Acreage Banner -->
+                  <div class="absolute bottom-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-sm rounded-xs text-[#F5F2E9] text-xs font-mono font-semibold">
+                    {listing.acres}
+                  </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="p-6">
+                  <h3 class="font-serif text-xl text-[#102B20] mb-1 group-hover:text-[#173D2B] transition-colors">
+                    {listing.title}
+                  </h3>
+                  <p class="text-xs text-[#6E8061] font-mono mb-4">
+                    {listing.location}
+                  </p>
+
+                  <div class="space-y-2 py-3 border-y border-[#202923]/8 text-xs text-[#202923]/80">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[#202923]/60">Soil Typology:</span>
+                      <span class="font-medium text-[#102B20]">{listing.soil}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-[#202923]/60">Water Source:</span>
+                      <span class="font-medium text-[#102B20]">{listing.water}</span>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 flex flex-wrap gap-1.5">
+                    {listing.features.map((feat) => (
+                      <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#FAF8F3] text-[#173D2B] border border-[#202923]/10">
+                        {feat}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Action Area -->
+              <div class="p-4 bg-[#FAF8F3] border-t border-[#202923]/10 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-[#6E8061]">
+                  Demonstration Specimen
+                </span>
+                <span class="text-xs font-semibold uppercase text-[#173D2B] group-hover:text-[#B89B65] transition-colors inline-flex items-center gap-1">
+                  <span>View Concept Pack</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </article>
+          </Reveal>
+        ))
+      }
+    </div>
+  </Container>
+</section>

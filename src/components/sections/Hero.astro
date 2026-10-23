@@ -1,0 +1,130 @@
+---
+import { HERO_DATA } from '../../data/company';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen flex flex-col justify-between pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-[#102B20] scroll-mt-20"
+>
+  <!-- Background Aerial Farmland Image with Cinematic Dark Gradient Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={HERO_DATA.bgImage}
+      alt="Aerial panorama of cultivated green agricultural terraces"
+      class="w-full h-full object-cover object-center scale-105 animate-hero-zoom opacity-80"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-[#102B20]/95 via-[#102B20]/80 to-[#102B20]/50"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-[#102B20] via-transparent to-[#102B20]/70"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(#B89B65_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"
+      aria-hidden="true"
+    ></div>
+  </div>
+
+  <!-- Hero Main Content -->
+  <Container class="relative z-10 my-auto">
+    <div class="max-w-4xl">
+      <!-- Eyebrow & Investor Presentation Badge -->
+      <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#B89B65]/40 mb-6 sm:mb-8 animate-fade-in">
+        <span class="w-2 h-2 rounded-full bg-[#B89B65] animate-pulse"></span>
+        <span class="text-xs font-semibold tracking-[0.22em] uppercase text-[#F5F2E9]">
+          {HERO_DATA.eyebrow}
+        </span>
+        <span class="text-white/30 text-xs">|</span>
+        <span class="text-[11px] font-medium tracking-wide text-[#B89B65]">
+          {HERO_DATA.badge}
+        </span>
+      </div>
+
+      <!-- Core Brand Message: Large Editorial Serif Lines -->
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#F5F2E9] tracking-tight leading-[1.08] mb-6 sm:mb-8 drop-shadow-sm">
+        <span class="block">{HERO_DATA.headlineP1}</span>
+        <span class="block text-[#CDB78C] italic">{HERO_DATA.headlineP2}</span>
+        <span class="block">{HERO_DATA.headlineP3}</span>
+      </h1>
+
+      <!-- Supporting Description -->
+      <p class="text-lg sm:text-xl lg:text-2xl text-[#F5F2E9]/85 font-light leading-relaxed max-w-2xl mb-10 sm:mb-12">
+        {HERO_DATA.description}
+      </p>
+
+      <!-- Investor Presentation CTAs -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
+        <Button href={HERO_DATA.primaryCta.href} variant="gold" size="lg" hasArrow>
+          {HERO_DATA.primaryCta.label}
+        </Button>
+        <Button href={HERO_DATA.secondaryCta.href} variant="outline-light" size="lg">
+          {HERO_DATA.secondaryCta.label}
+        </Button>
+      </div>
+    </div>
+  </Container>
+
+  <!-- Bottom Hero Bar: Scroll Indicator & 3 Pillars Preview -->
+  <div class="relative z-10 pt-8">
+    <Container>
+      <div class="pt-6 border-t border-white/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <!-- Interactive Scroll Indicator -->
+        <a
+          href="#overview"
+          class="inline-flex items-center gap-3 text-xs uppercase tracking-widest text-[#F5F2E9]/70 hover:text-[#B89B65] transition-colors group focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B89B65]"
+        >
+          <div class="w-5 h-8 rounded-full border border-white/30 flex items-start justify-center p-1 group-hover:border-[#B89B65] transition-colors">
+            <div class="w-1 h-2 bg-[#B89B65] rounded-full animate-bounce"></div>
+          </div>
+          <span>{HERO_DATA.scrollText}</span>
+        </a>
+
+        <!-- Fast Feature Pillars Pill -->
+        <div class="hidden sm:flex items-center gap-6 text-xs text-[#F5F2E9]/75 font-mono">
+          <div class="flex items-center gap-2">
+            <span class="text-[#B89B65]">01</span>
+            <span>Discover Farmland</span>
+          </div>
+          <span class="text-white/20">/</span>
+          <div class="flex items-center gap-2">
+            <span class="text-[#B89B65]">02</span>
+            <span>Manage Your Land</span>
+          </div>
+          <span class="text-white/20">/</span>
+          <div class="flex items-center gap-2">
+            <span class="text-[#B89B65]">03</span>
+            <span>Grow with Expertise</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </div>
+</section>
+
+<style>
+  @keyframes heroZoom {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .animate-hero-zoom {
+    animation: heroZoom 14s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-hero-zoom {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+</style>

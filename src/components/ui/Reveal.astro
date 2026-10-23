@@ -1,0 +1,46 @@
+---
+interface Props {
+  delay?: number;
+  class?: string;
+  tag?: 'div' | 'section' | 'article' | 'span';
+}
+
+const { delay = 0, class: className = '', tag: Tag = 'div' } = Astro.props;
+---
+
+<Tag
+  class={`reveal-on-scroll ${className}`}
+  data-reveal-delay={delay}
+  style={`transition-delay: ${delay}ms;`}
+>
+  <slot />
+</Tag>
+
+<style>
+  /* Elements are fully visible by default for SSR and no-js environments */
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* When JS is active, initial unrevealed state */
+  html.js-ready .reveal-on-scroll:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  html.js-ready .reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>

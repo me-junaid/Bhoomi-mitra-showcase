@@ -1,0 +1,115 @@
+---
+import { REVENUE_MODEL_DATA } from '../../data/revenue';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="revenue-model" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label={REVENUE_MODEL_DATA.eyebrow}
+        title={REVENUE_MODEL_DATA.heading}
+        description={REVENUE_MODEL_DATA.description}
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Investor Model Disclaimer Callout -->
+    <Reveal delay={100}>
+      <div class="mb-12 p-4 sm:p-5 rounded-xs bg-[#173D2B]/10 border border-[#173D2B]/25 text-xs text-[#173D2B] flex items-start gap-3">
+        <svg class="w-5 h-5 text-[#B89B65] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="leading-relaxed italic text-[#202923]/80">
+          {REVENUE_MODEL_DATA.disclaimer}
+        </p>
+      </div>
+    </Reveal>
+
+    <!-- 6 Structured Revenue Streams Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {
+        REVENUE_MODEL_DATA.streams.map((stream, idx) => (
+          <Reveal delay={idx * 80} class="h-full">
+            <div class="h-full bg-white border border-[#202923]/15 rounded-sm p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#173D2B] hover:shadow-lg transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-xs font-bold text-[#B89B65]">
+                    STREAM {stream.number}
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#173D2B]/10 text-[#173D2B] font-semibold">
+                    {stream.modelType}
+                  </span>
+                </div>
+
+                <h3 class="font-serif text-2xl text-[#102B20] mb-1 group-hover:text-[#173D2B] transition-colors">
+                  {stream.title}
+                </h3>
+                <span class="text-xs font-mono uppercase tracking-wider text-[#6E8061] block mb-3">
+                  {stream.category}
+                </span>
+
+                <p class="text-xs text-[#202923]/75 leading-relaxed mb-4">
+                  {stream.description}
+                </p>
+
+                <!-- Key Revenue Drivers -->
+                <div class="py-3 border-t border-[#202923]/8 mb-4">
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-[#102B20] font-semibold block mb-2">
+                    Primary Monetization Mechanics:
+                  </span>
+                  <ul class="space-y-1.5 text-xs text-[#202923]/80" role="list">
+                    {stream.revenueDrivers.map((driver) => (
+                      <li class="flex items-start gap-2 text-[11px]">
+                        <span class="text-[#B89B65] font-bold">•</span>
+                        <span>{driver}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Investor Rationale Footer -->
+              <div class="pt-3 border-t border-[#202923]/8 bg-[#FAF8F3] -mx-6 -mb-6 p-4 rounded-b-sm">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#6E8061] block mb-1">
+                  Investor Rationale:
+                </span>
+                <p class="text-[11px] text-[#202923]/80 italic leading-snug">
+                  {stream.investorRationale}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+
+    <!-- Financial Projections Placeholder Area (For Future Approved Data Room Figures) -->
+    <Reveal delay={250}>
+      <div class="p-8 sm:p-10 rounded-sm bg-[#102B20] text-[#F5F2E9] border border-[#B89B65]/40 shadow-xl relative overflow-hidden">
+        <div class="max-w-3xl">
+          <span class="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#B89B65] block mb-2">
+            CONFIDENTIAL INVESTOR DATA ROOM
+          </span>
+          <h4 class="font-serif text-2xl sm:text-3xl text-[#F5F2E9] mb-3">
+            {REVENUE_MODEL_DATA.financialProjectionsPlaceholder.title}
+          </h4>
+          <p class="text-xs font-mono text-[#CDB78C] uppercase tracking-wider mb-4">
+            {REVENUE_MODEL_DATA.financialProjectionsPlaceholder.subtitle}
+          </p>
+          <p class="text-xs sm:text-sm text-[#F5F2E9]/80 leading-relaxed font-light mb-6">
+            {REVENUE_MODEL_DATA.financialProjectionsPlaceholder.note}
+          </p>
+
+          <div class="inline-flex items-center gap-3 pt-4 border-t border-white/10 text-xs font-mono text-[#B89B65]">
+            <span class="w-2 h-2 rounded-full bg-[#6E8061] animate-pulse"></span>
+            <span>Accredited Investor Inquiries: Available via Corporate Secretariat</span>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </Container>
+</section>

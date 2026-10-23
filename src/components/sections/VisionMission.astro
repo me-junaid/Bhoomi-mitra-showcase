@@ -1,0 +1,110 @@
+---
+import { VISION_MISSION_DATA } from '../../data/company';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="vision-mission" class="py-24 sm:py-32 bg-[#FAF8F3] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label={VISION_MISSION_DATA.eyebrow}
+        title={VISION_MISSION_DATA.heading}
+        description="Defining the institutional principles and long-term trajectory guiding the Bhoomi Mitra business ecosystem."
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Vision & Mission Dual Editorial Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mb-16">
+      <!-- Vision Card -->
+      <Reveal delay={100} class="h-full">
+        <div class="h-full p-8 sm:p-10 rounded-sm bg-[#173D2B] text-[#F5F2E9] border border-[#B89B65]/40 shadow-md flex flex-col justify-between relative overflow-hidden">
+          <div class="relative z-10">
+            <span class="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#B89B65] block mb-2">
+              Strategic Ambition
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl text-[#F5F2E9] mb-3">
+              {VISION_MISSION_DATA.vision.title}
+            </h3>
+            <p class="text-sm font-medium uppercase tracking-wider text-[#CDB78C] mb-6">
+              {VISION_MISSION_DATA.vision.tagline}
+            </p>
+            <p class="text-base text-[#F5F2E9]/85 leading-relaxed font-light">
+              "{VISION_MISSION_DATA.vision.description}"
+            </p>
+          </div>
+
+          <div class="pt-8 mt-8 border-t border-white/10 flex items-center justify-between text-xs text-[#F5F2E9]/60 font-mono">
+            <span>[Strategic Ambition — Draft]</span>
+            <span class="text-[#B89B65]">Phase 01–05 Horizon</span>
+          </div>
+        </div>
+      </Reveal>
+
+      <!-- Mission Card -->
+      <Reveal delay={180} class="h-full">
+        <div class="h-full p-8 sm:p-10 rounded-sm bg-white text-[#102B20] border border-[#202923]/15 shadow-sm flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#6E8061] block mb-2">
+              Operational Focus
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl text-[#102B20] mb-3">
+              {VISION_MISSION_DATA.mission.title}
+            </h3>
+            <p class="text-sm font-medium uppercase tracking-wider text-[#173D2B] mb-6">
+              {VISION_MISSION_DATA.mission.tagline}
+            </p>
+            <p class="text-base text-[#202923]/80 leading-relaxed font-light">
+              "{VISION_MISSION_DATA.mission.description}"
+            </p>
+          </div>
+
+          <div class="pt-8 mt-8 border-t border-[#202923]/10 flex items-center justify-between text-xs text-[#202923]/60 font-mono">
+            <span>[Operational Purpose — Draft]</span>
+            <span class="text-[#173D2B]">Ecosystem Governance</span>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+
+    <!-- Core Values Row: 5 Institutional Principles -->
+    <Reveal delay={240}>
+      <div class="bg-white border border-[#202923]/12 p-8 sm:p-10 rounded-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#202923]/10">
+          <div>
+            <span class="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-[#173D2B] block mb-1">
+              Guiding Principles
+            </span>
+            <h3 class="font-serif text-2xl text-[#102B20]">
+              Institutional Values
+            </h3>
+          </div>
+          <span class="text-xs text-[#6E8061] italic font-mono">
+            * {VISION_MISSION_DATA.disclaimer}
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {
+            VISION_MISSION_DATA.values.map((val, idx) => (
+              <div class="flex flex-col">
+                <span class="font-mono text-xs font-bold text-[#B89B65] mb-2">
+                  0{idx + 1}
+                </span>
+                <h4 class="font-serif text-lg text-[#102B20] mb-2">
+                  {val.title}
+                </h4>
+                <p class="text-xs text-[#202923]/75 leading-relaxed">
+                  {val.desc}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Reveal>
+  </Container>
+</section>

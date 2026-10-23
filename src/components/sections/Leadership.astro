@@ -1,0 +1,102 @@
+---
+import { LEADERSHIP_PLACEHOLDERS } from '../../data/company';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="team" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label="THE PEOPLE BEHIND THE VISION"
+        title="Leadership & Expertise."
+        description="A structured organizational framework designed to unite seasoned agribusiness executives, operational land managers, and distinguished agricultural scientists."
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Leadership Disclaimer Banner -->
+    <Reveal delay={80}>
+      <div class="mb-12 p-4 rounded-xs bg-white border border-[#202923]/12 text-xs text-[#202923]/80 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#B89B65]"></span>
+          <span class="font-mono font-semibold uppercase tracking-wider text-[11px] text-[#173D2B]">
+            Executive Governance Framework
+          </span>
+        </div>
+        <span class="text-[11px] font-mono italic text-[#6E8061]">
+          * Profile details represent defined candidate scopes pending formal corporate disclosure.
+        </span>
+      </div>
+    </Reveal>
+
+    <!-- 4 Structured Leadership Profile Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        LEADERSHIP_PLACEHOLDERS.map((member, idx) => (
+          <Reveal delay={idx * 100} class="h-full">
+            <div class="h-full bg-white border border-[#202923]/15 rounded-sm p-7 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#173D2B] transition-all group">
+              <div>
+                <!-- Top Badge & Role Category -->
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#B89B65] font-semibold">
+                    {member.category}
+                  </span>
+                  <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#173D2B]/10 text-[#173D2B] font-medium">
+                    {member.status}
+                  </span>
+                </div>
+
+                <!-- Role Title & Name Placeholder -->
+                <h3 class="font-serif text-2xl text-[#102B20] mb-1">
+                  {member.role}
+                </h3>
+                <span class="text-xs font-mono text-[#6E8061] block mb-6">
+                  {member.namePlaceholder}
+                </span>
+
+                <!-- Structured Profile Fields -->
+                <div class="space-y-4 pt-4 border-t border-[#202923]/10 text-xs">
+                  <div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#102B20] font-semibold block mb-0.5">
+                      Professional Background:
+                    </span>
+                    <p class="text-[#202923]/80 leading-relaxed font-light">
+                      {member.backgroundPlaceholder}
+                    </p>
+                  </div>
+
+                  <div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#102B20] font-semibold block mb-0.5">
+                      Domain Experience:
+                    </span>
+                    <p class="text-[#202923]/80 leading-relaxed font-light">
+                      {member.experiencePlaceholder}
+                    </p>
+                  </div>
+
+                  <div>
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-[#102B20] font-semibold block mb-0.5">
+                      Strategic Contribution:
+                    </span>
+                    <p class="text-[#202923]/80 leading-relaxed font-light italic">
+                      "{member.motivationPlaceholder}"
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Profile Tag -->
+              <div class="pt-4 mt-6 border-t border-[#202923]/8 flex items-center justify-between text-[10px] font-mono text-[#6E8061]">
+                <span>Governance Blueprint</span>
+                <span>Bhoomi Mitra Secretariat</span>
+              </div>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+  </Container>
+</section>

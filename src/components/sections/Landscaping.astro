@@ -1,0 +1,87 @@
+---
+import { LANDSCAPING_DATA } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="landscaping" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label={LANDSCAPING_DATA.eyebrow}
+        title={LANDSCAPING_DATA.heading}
+        description={LANDSCAPING_DATA.description}
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {
+        LANDSCAPING_DATA.services.map((service, idx) => (
+          <Reveal delay={idx * 70} class="h-full">
+            <div class="h-full p-6 rounded-xs bg-white border border-[#202923]/12 hover:border-[#173D2B] transition-all shadow-xs flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-mono font-bold text-[#6E8061] block mb-2">
+                  SERVICE 0{idx + 1}
+                </span>
+                <h4 class="font-serif text-xl text-[#102B20] mb-2">
+                  {service.title}
+                </h4>
+                <p class="text-xs text-[#202923]/75 leading-relaxed">
+                  {service.desc}
+                </p>
+              </div>
+              <div class="pt-3 mt-4 border-t border-[#202923]/8 text-[10px] font-mono text-[#B89B65]">
+                Eco-Landscape Architecture
+              </div>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+
+    <!-- Landscape Image Gallery (with Clear Illustrative Disclaimer) -->
+    <Reveal delay={200}>
+      <div class="p-6 sm:p-8 rounded-sm bg-white border border-[#202923]/15 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#202923]/10">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#B89B65] block mb-0.5">
+              Visual Reference Gallery
+            </span>
+            <h4 class="font-serif text-xl text-[#102B20]">
+              Conceptual Agrarian Design Inspirations
+            </h4>
+          </div>
+          <span class="text-xs text-[#6E8061] italic font-mono max-w-md sm:text-right">
+            * {LANDSCAPING_DATA.disclaimer}
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            LANDSCAPING_DATA.gallery.map((item) => (
+              <div class="group relative overflow-hidden rounded-xs bg-[#102B20] aspect-[16/11]">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#102B20]/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
+                  <span class="font-serif text-sm">{item.title}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-[#F5F2E9]">
+                    {item.tag}
+                  </span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Reveal>
+  </Container>
+</section>

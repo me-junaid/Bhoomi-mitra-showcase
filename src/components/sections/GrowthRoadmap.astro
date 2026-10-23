@@ -1,0 +1,115 @@
+---
+import { GROWTH_ROADMAP_DATA } from '../../data/roadmap';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="roadmap" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label={GROWTH_ROADMAP_DATA.eyebrow}
+        title={GROWTH_ROADMAP_DATA.heading}
+        description={GROWTH_ROADMAP_DATA.description}
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Roadmap Disclaimer -->
+    <Reveal delay={80}>
+      <div class="mb-12 p-4 rounded-xs bg-[#173D2B]/10 border border-[#173D2B]/20 text-xs text-[#173D2B] flex items-center justify-between">
+        <span class="font-mono font-semibold uppercase tracking-wider text-[11px]">
+          Strategic Horizon
+        </span>
+        <span class="text-[11px] italic text-[#202923]/70 font-mono">
+          * {GROWTH_ROADMAP_DATA.disclaimer}
+        </span>
+      </div>
+    </Reveal>
+
+    <!-- 5 Phased Roadmap Milestone Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-20">
+      {
+        GROWTH_ROADMAP_DATA.phases.map((phase, idx) => (
+          <Reveal delay={idx * 70} class="h-full">
+            <div class="h-full bg-white border border-[#202923]/12 rounded-sm p-6 flex flex-col justify-between shadow-xs hover:border-[#173D2B] transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-xs font-bold text-[#173D2B]">
+                    {phase.phase}
+                  </span>
+                  <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-[#B89B65]/20 text-[#102B20] font-semibold">
+                    {phase.status}
+                  </span>
+                </div>
+
+                <h4 class="font-serif text-lg text-[#102B20] mb-1">
+                  {phase.name}
+                </h4>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#6E8061] block mb-4">
+                  {phase.focus}
+                </span>
+
+                <ul class="space-y-2 pt-3 border-t border-[#202923]/8 text-xs text-[#202923]/80" role="list">
+                  {phase.milestones.map((m) => (
+                    <li class="flex items-start gap-1.5 text-[11px]">
+                      <span class="text-[#B89B65] font-bold">•</span>
+                      <span>{m}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="pt-3 mt-6 border-t border-[#202923]/8 text-[10px] font-mono text-[#6E8061]">
+                {phase.horizon}
+              </div>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+
+    <!-- Sustainability & Ecological Stewardship Banner -->
+    <Reveal delay={200}>
+      <div class="p-8 sm:p-12 rounded-sm bg-[#102B20] text-[#F5F2E9] shadow-xl border border-[#B89B65]/40 relative overflow-hidden">
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center gap-2 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#6E8061]" />
+            <span class="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#B89B65]">
+              ECOLOGICAL FOUNDATION
+            </span>
+          </div>
+
+          <h3 class="font-serif text-2xl sm:text-4xl text-[#F5F2E9] mb-4">
+            {GROWTH_ROADMAP_DATA.sustainability.heading}
+          </h3>
+
+          <p class="text-sm sm:text-base text-[#F5F2E9]/80 leading-relaxed font-light mb-8 max-w-3xl">
+            {GROWTH_ROADMAP_DATA.sustainability.description}
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-6 border-t border-white/10">
+            {
+              GROWTH_ROADMAP_DATA.sustainability.tenets.map((tenet) => (
+                <div class="p-4 rounded-xs bg-white/5 border border-white/10">
+                  <h4 class="font-serif text-base text-[#CDB78C] mb-1">
+                    {tenet.title}
+                  </h4>
+                  <p class="text-xs text-[#F5F2E9]/75 leading-relaxed font-light">
+                    {tenet.desc}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/10 text-[11px] font-mono text-[#F5F2E9]/60 italic">
+            * {GROWTH_ROADMAP_DATA.sustainability.disclaimer}
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </Container>
+</section>

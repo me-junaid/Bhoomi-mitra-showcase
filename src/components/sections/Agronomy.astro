@@ -1,0 +1,78 @@
+---
+import { AGRONOMY_DATA } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="agronomy" class="py-24 sm:py-32 bg-[#FAF8F3] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label={AGRONOMY_DATA.eyebrow}
+        title={AGRONOMY_DATA.heading}
+        description={AGRONOMY_DATA.description}
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column: Knowledge Network Grid -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {
+          AGRONOMY_DATA.advisoryPillars.map((pillar, idx) => (
+            <Reveal delay={idx * 75} class="h-full">
+              <div class="h-full p-6 rounded-xs bg-white border border-[#202923]/12 hover:border-[#173D2B] transition-all shadow-xs flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-mono font-bold text-[#173D2B]">
+                      ADVISORY 0{idx + 1}
+                    </span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#B89B65]" />
+                  </div>
+                  <h4 class="font-serif text-lg text-[#102B20] mb-2">
+                    {pillar.title}
+                  </h4>
+                  <p class="text-xs text-[#202923]/75 leading-relaxed">
+                    {pillar.desc}
+                  </p>
+                </div>
+                <div class="pt-3 mt-4 border-t border-[#202923]/8 text-[10px] font-mono text-[#6E8061]">
+                  Qualified Specialist Model
+                </div>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+
+      <!-- Right Column: Scientific Field Inspection Photography -->
+      <div class="lg:col-span-5">
+        <Reveal delay={180}>
+          <div class="relative rounded-sm overflow-hidden shadow-xl bg-[#102B20] aspect-[3/4] group">
+            <img
+              src={AGRONOMY_DATA.image}
+              alt={AGRONOMY_DATA.imageAlt}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#102B20]/90 via-[#102B20]/25 to-transparent"></div>
+
+            <div class="absolute bottom-6 left-6 right-6 p-5 bg-[#102B20]/95 backdrop-blur-md border border-[#B89B65]/30 rounded-xs text-[#F5F2E9]">
+              <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#B89B65] block mb-1">
+                Data-Driven Cultivation
+              </span>
+              <h4 class="font-serif text-lg text-[#F5F2E9] mb-1">
+                Agronomic Intelligence Network
+              </h4>
+              <p class="text-xs text-[#F5F2E9]/75 leading-relaxed">
+                Independent certified soil scientists and agronomists guide planting schedules, irrigation volumes, and organic soil regeneration.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </Container>
+</section>

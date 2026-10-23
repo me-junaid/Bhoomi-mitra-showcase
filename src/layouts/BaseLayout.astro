@@ -1,0 +1,139 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = 'Bhoomi Mitra | Farmland & Agricultural Solutions',
+  description = "Discover Bhoomi Mitra's vision for an integrated farmland ecosystem spanning land discovery, management, plantations, and agricultural expertise.",
+  image = '/images/hero-farmland.jpg',
+  canonicalUrl = 'https://bhoomimitra.com',
+} = Astro.props;
+
+const siteUrl = 'https://bhoomimitra.com';
+const fullImageUrl = new URL(image, siteUrl).toString();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Bhoomi Mitra',
+  alternateName: 'Bhoomi Mitra Farmland & Agri Solutions',
+  description: description,
+  url: siteUrl,
+  logo: `${siteUrl}/images/brand-emblem.svg`,
+  knowsAbout: [
+    'Farmland Management',
+    'Agricultural Due Diligence',
+    'Sandalwood Silviculture',
+    'Agronomy Advisory',
+    'Farmland Marketplace',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Technical SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#102B20" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:site_name" content="Bhoomi Mitra" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <!-- Google Fonts Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (Organization) -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Script to set js-ready immediately to avoid flicker -->
+    <script is:inline>
+      document.documentElement.classList.add('js-ready');
+    </script>
+  </head>
+
+  <body class="bg-[#F5F2E9] text-[#202923] antialiased selection:bg-[#B89B65] selection:text-[#102B20]">
+    <!-- Accessibility Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#102B20] focus:text-[#F5F2E9] focus:outline-none focus:ring-2 focus:ring-[#B89B65] text-sm font-semibold rounded-xs shadow-xl"
+    >
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main-content" class="min-h-screen">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Global Reveal IntersectionObserver Setup -->
+    <script>
+      function initScrollReveals() {
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-revealed');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.12,
+              rootMargin: '0px 0px -40px 0px',
+            }
+          );
+
+          document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            observer.observe(el);
+          });
+        } else {
+          // Fallback for older browsers
+          document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            el.classList.add('is-revealed');
+          });
+        }
+      }
+
+      initScrollReveals();
+      document.addEventListener('astro:page-load', initScrollReveals);
+    </script>
+  </body>
+</html>

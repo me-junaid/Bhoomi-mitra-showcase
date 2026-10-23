@@ -1,0 +1,111 @@
+---
+import { COMPANY_OVERVIEW_DATA } from '../../data/company';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+---
+
+<section id="overview" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Left Column: Editorial Company Overview -->
+      <div class="lg:col-span-7 flex flex-col items-start">
+        <Reveal>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-6 bg-[#173D2B]" aria-hidden="true"></span>
+            <span class="text-xs font-semibold uppercase tracking-[0.22em] text-[#173D2B]">
+              {COMPANY_OVERVIEW_DATA.eyebrow}
+            </span>
+          </div>
+
+          <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#102B20] tracking-tight leading-[1.12] mb-6">
+            {COMPANY_OVERVIEW_DATA.heading}
+          </h2>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <p class="text-lg sm:text-xl text-[#102B20] font-normal leading-relaxed mb-6 border-l-2 border-[#B89B65] pl-5 italic">
+            {COMPANY_OVERVIEW_DATA.leadStatement}
+          </p>
+
+          <div class="space-y-4 text-sm sm:text-base text-[#202923]/80 leading-relaxed mb-8">
+            {COMPANY_OVERVIEW_DATA.paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+
+          <!-- Visual Statement Plaque -->
+          <div class="w-full bg-[#173D2B] text-[#F5F2E9] p-5 sm:p-6 rounded-xs mb-8 flex items-center gap-4 shadow-sm border border-[#B89B65]/30">
+            <div class="w-2.5 h-10 bg-[#B89B65] rounded-xs shrink-0"></div>
+            <div>
+              <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-[#B89B65]">
+                Core Positioning Statement
+              </span>
+              <p class="font-serif text-lg sm:text-xl text-[#F5F2E9] italic mt-0.5">
+                "{COMPANY_OVERVIEW_DATA.quoteBanner}"
+              </p>
+            </div>
+          </div>
+
+          <!-- 4 Pillars Capability Preview Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8 pt-4 border-t border-[#202923]/10">
+            {
+              COMPANY_OVERVIEW_DATA.pillarsPreview.map((item) => (
+                <div class="flex items-start gap-2.5 text-xs">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#B89B65] mt-1.5 shrink-0" />
+                  <div>
+                    <strong class="font-semibold text-[#102B20] block">{item.title}</strong>
+                    <span class="text-[#202923]/70">{item.desc}</span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="flex items-center gap-4">
+            <Button href="#ecosystem" variant="primary" size="md" hasArrow>
+              Explore Business Ecosystem
+            </Button>
+            <span class="text-xs font-mono text-[#6E8061]">
+              [Investor Concept Preview]
+            </span>
+          </div>
+        </Reveal>
+      </div>
+
+      <!-- Right Column: Framed Agricultural Landscape Photography -->
+      <div class="lg:col-span-5">
+        <Reveal delay={200}>
+          <div class="relative">
+            <!-- Decorative Accent Frame -->
+            <div
+              class="absolute -inset-3 sm:-inset-4 border border-[#B89B65]/40 rounded-sm pointer-events-none translate-x-2 translate-y-2 hidden sm:block"
+              aria-hidden="true"
+            ></div>
+
+            <div class="relative overflow-hidden rounded-sm shadow-xl bg-[#102B20] group aspect-[4/5] sm:aspect-[3/4]">
+              <img
+                src={COMPANY_OVERVIEW_DATA.image}
+                alt={COMPANY_OVERVIEW_DATA.imageAlt}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#102B20]/80 via-transparent to-transparent"></div>
+
+              <!-- Editorial Image Caption -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 bg-[#102B20]/90 backdrop-blur-md border border-white/10 rounded-xs text-[#F5F2E9]">
+                <div class="flex items-center justify-between text-[11px] font-mono text-[#B89B65] uppercase tracking-wider mb-1">
+                  <span>Integrated Lifecycle</span>
+                  <span>Agricultural Ecosystem</span>
+                </div>
+                <p class="text-xs text-[#F5F2E9]/85 leading-snug">
+                  Connecting land verification, ground stewardship, and specialized plantation cultivation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </Container>
+</section>

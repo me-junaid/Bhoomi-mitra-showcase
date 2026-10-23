@@ -1,0 +1,65 @@
+---
+import { TRUST_FRAMEWORK } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="trust" class="py-24 sm:py-32 lg:py-36 bg-[#102B20] text-[#F5F2E9] relative overflow-hidden scroll-mt-20">
+  <!-- Subtle background ambient gold contour glow -->
+  <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#B89B65]/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#173D2B]/50 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <Container class="relative z-10">
+    <Reveal>
+      <SectionHeading
+        label={TRUST_FRAMEWORK.eyebrow}
+        title={TRUST_FRAMEWORK.heading}
+        description={TRUST_FRAMEWORK.description}
+        align="split"
+        theme="dark"
+      />
+    </Reveal>
+
+    <!-- Governance Disclaimer Banner -->
+    <Reveal delay={80}>
+      <div class="mb-12 p-4 sm:p-5 rounded-xs bg-white/5 border border-white/15 text-xs text-[#F5F2E9]/80 flex items-start gap-3.5 backdrop-blur-sm">
+        <svg class="w-5 h-5 text-[#B89B65] mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <p class="leading-relaxed italic">
+          {TRUST_FRAMEWORK.disclaimer}
+        </p>
+      </div>
+    </Reveal>
+
+    <!-- Structured Verification Journey Graphic (7 Pillars) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {
+        TRUST_FRAMEWORK.pillars.map((pillar, idx) => (
+          <Reveal delay={idx * 60} class="h-full">
+            <div class="h-full p-6 rounded-xs bg-white/5 border border-white/10 hover:border-[#B89B65]/70 hover:bg-white/[0.08] transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-xs font-bold text-[#B89B65]">
+                    CHECKPOINT {pillar.number}
+                  </span>
+                  <span class="w-2 h-2 rounded-full bg-[#B89B65] opacity-60 group-hover:scale-125 transition-transform" />
+                </div>
+                <h4 class="font-serif text-lg text-[#F5F2E9] mb-2 leading-snug">
+                  {pillar.title}
+                </h4>
+                <p class="text-xs text-[#F5F2E9]/75 leading-relaxed font-light">
+                  {pillar.desc}
+                </p>
+              </div>
+              <div class="pt-3 mt-4 border-t border-white/10 text-[10px] font-mono text-[#CDB78C]">
+                Proposed Operating Protocol
+              </div>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+  </Container>
+</section>

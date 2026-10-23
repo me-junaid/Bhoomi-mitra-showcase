@@ -1,0 +1,130 @@
+---
+import { MANAGEMENT_LIFECYCLE } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="management" class="py-24 sm:py-32 bg-[#F5F2E9] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label="PILLAR 02 — MANAGE YOUR LAND"
+        title="Professional Care for Every Stage of Land Management."
+        description="Solving the logistical friction of farmland ownership through structured, end-to-end on-ground estate management for resident and absentee landowners alike."
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- 7-Stage Process Lifecycle Timeline -->
+    <div class="my-12">
+      <!-- Desktop Horizontal Process Grid -->
+      <div class="hidden xl:grid grid-cols-7 gap-3 relative">
+        <!-- Connecting top horizontal guideline -->
+        <div class="absolute top-6 left-4 right-4 h-px bg-gradient-to-r from-[#173D2B]/30 via-[#B89B65] to-[#173D2B]/30 z-0"></div>
+
+        {
+          MANAGEMENT_LIFECYCLE.map((step, idx) => (
+            <Reveal delay={idx * 80} class="h-full">
+              <div class="relative z-10 flex flex-col items-center text-center p-3 h-full group">
+                <!-- Step Number Bubble -->
+                <div class="w-12 h-12 rounded-full bg-[#102B20] border-2 border-[#B89B65] text-[#F5F2E9] flex items-center justify-center font-mono text-xs font-bold mb-4 shadow-sm group-hover:scale-110 group-hover:bg-[#173D2B] transition-all">
+                  {step.step}
+                </div>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-[#173D2B] mb-1">
+                  {step.name}
+                </span>
+                <h4 class="font-serif text-sm font-bold text-[#102B20] mb-2 leading-snug">
+                  {step.title}
+                </h4>
+                <p class="text-[11px] text-[#202923]/75 leading-relaxed mb-3">
+                  {step.description}
+                </p>
+                <div class="mt-auto pt-2 border-t border-[#202923]/10 w-full text-[10px] font-mono text-[#6E8061]">
+                  {step.deliverable}
+                </div>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+
+      <!-- Mobile & Tablet Vertical Process Timeline -->
+      <div class="xl:hidden flex flex-col gap-4 relative">
+        <div class="absolute top-4 bottom-4 left-6 w-px bg-gradient-to-b from-[#173D2B]/30 via-[#B89B65] to-[#173D2B]/30 z-0"></div>
+
+        {
+          MANAGEMENT_LIFECYCLE.map((step, idx) => (
+            <Reveal delay={idx * 60}>
+              <div class="relative z-10 flex items-start gap-4 bg-white border border-[#202923]/10 p-4 rounded-sm shadow-xs">
+                <div class="w-10 h-10 rounded-full bg-[#102B20] border border-[#B89B65] text-[#F5F2E9] flex items-center justify-center font-mono text-xs font-bold shrink-0">
+                  {step.step}
+                </div>
+                <div class="flex-1">
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-[#173D2B] block mb-0.5">
+                    {step.name}
+                  </span>
+                  <h4 class="font-serif text-base text-[#102B20] mb-1">
+                    {step.title}
+                  </h4>
+                  <p class="text-xs text-[#202923]/80 leading-relaxed mb-2">
+                    {step.description}
+                  </p>
+                  <div class="text-[11px] font-mono text-[#6E8061] bg-[#FAF8F3] px-2.5 py-1 rounded-xs inline-block border border-[#202923]/5">
+                    Deliverable: {step.deliverable}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Conceptual Digital Progress Reporting Demo Card -->
+    <Reveal delay={250}>
+      <div class="mt-12 bg-white border border-[#202923]/15 rounded-sm p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 mb-6 border-b border-[#202923]/10">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#B89B65] block mb-1">
+              Conceptual Reporting Model
+            </span>
+            <h4 class="font-serif text-xl sm:text-2xl text-[#102B20]">
+              Remote Estate Supervision Dossier [Illustrative Preview]
+            </h4>
+          </div>
+          <span class="text-xs font-mono px-3 py-1 bg-[#173D2B]/10 text-[#173D2B] rounded-full">
+            Bi-Weekly Telemetry Dispatch
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-4 rounded-xs bg-[#FAF8F3] border border-[#202923]/10">
+            <span class="text-[10px] font-mono text-[#6E8061] uppercase tracking-wider block mb-1">Module 01</span>
+            <h5 class="font-serif text-base text-[#102B20] mb-2">Irrigation &amp; Borewell Audit</h5>
+            <p class="text-xs text-[#202923]/75 leading-relaxed">
+              Automated logging of solar pump run-times, filtration backwash checks, and sub-surface moisture readings.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xs bg-[#FAF8F3] border border-[#202923]/10">
+            <span class="text-[10px] font-mono text-[#6E8061] uppercase tracking-wider block mb-1">Module 02</span>
+            <h5 class="font-serif text-base text-[#102B20] mb-2">Perimeter &amp; Weed Inspection</h5>
+            <p class="text-xs text-[#202923]/75 leading-relaxed">
+              Geo-tagged boundary check-ins, weed mitigation updates, and fence tensioning validation.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xs bg-[#FAF8F3] border border-[#202923]/10">
+            <span class="text-[10px] font-mono text-[#6E8061] uppercase tracking-wider block mb-1">Module 03</span>
+            <h5 class="font-serif text-base text-[#102B20] mb-2">Silviculture &amp; Crop Journal</h5>
+            <p class="text-xs text-[#202923]/75 leading-relaxed">
+              Agronomist health evaluations, sapling height measurements, companion plant mulching, and pest alerts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </Container>
+</section>

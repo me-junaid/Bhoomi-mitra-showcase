@@ -1,0 +1,54 @@
+---
+import { EXPERT_NETWORK } from '../../data/services';
+import Container from '../ui/Container.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="network" class="py-24 sm:py-32 bg-[#FAF8F3] border-b border-[#202923]/10 scroll-mt-20">
+  <Container>
+    <Reveal>
+      <SectionHeading
+        label={EXPERT_NETWORK.eyebrow}
+        title={EXPERT_NETWORK.heading}
+        description={EXPERT_NETWORK.description}
+        align="split"
+        theme="light"
+      />
+    </Reveal>
+
+    <!-- Collaborative Network Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-10">
+      {
+        EXPERT_NETWORK.stakeholders.map((item, idx) => (
+          <Reveal delay={idx * 60} class="h-full">
+            <div class="h-full p-6 bg-white border border-[#202923]/12 rounded-sm flex flex-col justify-between shadow-xs hover:border-[#173D2B] transition-all">
+              <div>
+                <span class="text-xs font-mono font-bold text-[#6E8061] block mb-2">
+                  STAKEHOLDER 0{idx + 1}
+                </span>
+                <h4 class="font-serif text-lg text-[#102B20] mb-2 leading-snug">
+                  {item.role}
+                </h4>
+                <p class="text-xs text-[#202923]/75 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+              <div class="pt-3 mt-4 border-t border-[#202923]/8 flex items-center justify-between text-[10px] font-mono text-[#B89B65]">
+                <span>Ecosystem Node</span>
+                <span>Independent / Partner</span>
+              </div>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+
+    <!-- Governance Notice Footnote -->
+    <Reveal delay={250}>
+      <div class="p-4 bg-white border border-[#202923]/10 rounded-xs text-center text-xs text-[#202923]/70 italic">
+        * Note: Bhoomi Mitra serves as the coordinating platform. Independent legal counsels, soil laboratories, surveyors, and nurseries operate as third-party professional partners rather than internal corporate affiliates.
+      </div>
+    </Reveal>
+  </Container>
+</section>
